@@ -1,4 +1,4 @@
-#include "SemApp.h"
+#include "SevanApp.h"
 #include "MooseInit.h"
 #include "Moose.h"
 #include "MooseApp.h"
@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
   MooseInit init(argc, argv);
 
   // Register this application's MooseApp and any it depends on
-  SemApp::registerApps();
+  SevanApp::registerApps();
 
   // This creates dynamic memory that we're responsible for deleting
   MooseApp * app = AppFactory::createApp("SemApp", argc, argv);

@@ -1,0 +1,42 @@
+#include "SevanApp.h"
+#include "Moose.h"
+#include "AppFactory.h"
+
+template<>
+InputParameters validParams<SevanApp>()
+{
+  InputParameters params = validParams<MooseApp>();
+  return params;
+}
+
+SevanApp::SevanApp(const std::string & name, InputParameters parameters) :
+    MooseApp(name, parameters)
+{
+  srand(processor_id());
+
+  Moose::registerObjects(_factory);
+  SevanApp::registerObjects(_factory);
+
+  Moose::associateSyntax(_syntax, _action_factory);
+  SevanApp::associateSyntax(_syntax, _action_factory);
+}
+
+SevanApp::~SevanApp()
+{
+}
+
+void
+SevanApp::registerApps()
+{
+  registerApp(SevanApp);
+}
+
+void
+SevanApp::registerObjects(Factory & factory)
+{
+}
+
+void
+SevanApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
+{
+}
